@@ -1,13 +1,13 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
+ESP8266WebServer server(80);
+
 const char* ssid = "ESP8266_AP";
 const char* password = "password123";
 
 const int ledPin = 2; // Pin for the LED
 boolean ledState = false;
-
-ESP8266WebServer server(80);
 
 void setup() {
   Serial.begin(115200);
