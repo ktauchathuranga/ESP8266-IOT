@@ -39,8 +39,8 @@ void setup() {
     html += "});";
     html += "setInterval(function() {";
     html += "  var sensorXhr = new XMLHttpRequest();";
-    html += "  sensorXhr.onreadystatechange = function() {";
-    html += "    if (sensorXhr.readyState === 4 && sensorXhr.status === 200) {";
+    html += "  sensorXhr.onload = function() {"; // Change here
+    html += "    if (sensorXhr.status === 200) {"; // Also update this line
     html += "      document.getElementById('sensorValue').textContent = sensorXhr.responseText;";
     html += "    }";
     html += "  };";
