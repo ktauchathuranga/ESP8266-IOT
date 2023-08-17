@@ -28,7 +28,7 @@ void setup() {
     String html = "<html><body>";
     html += "<h1>Welcome to ESP8266 Web Server</h1>";
     html += "<p>Sensor Value: <span id=\"sensorValue\">--</span></p>";
-    html += "<input type='range' id='brightnessSlider' min='0' max='255' value='128'>";
+    html += "<input type='range' id='brightnessSlider' min='0' max='255' value='0'>";
     html += "<script>";
     html += "document.getElementById('brightnessSlider').addEventListener('input', function() {";
     html += "  var brightnessValue = document.getElementById('brightnessSlider').value;";
