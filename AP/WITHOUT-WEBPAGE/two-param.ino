@@ -10,15 +10,23 @@ const int ledPin = 2; // Pin for the LED
 boolean ledState = false;
 int ledBrightness = 0; // Variable to store LED brightness
 
+IPAddress localIP(192, 168, 1, 1);  // Set your desired IP address
+IPAddress gateway(192, 168, 1, 1); // Set your gateway IP address
+IPAddress subnet(255, 255, 255, 0); // Set your subnet mask
+
 void setup() {
   Serial.begin(115200);
+  delay(10);
 
   pinMode(ledPin, OUTPUT);
-
+  
+  // Connect to WiFi network
+  WiFi.softAPConfig(localIP, gateway, subnet);
   WiFi.softAP(ssid, password);
-  IPAddress myIP = WiFi.softAPIP();
+
+  Serial.println();
   Serial.print("AP IP address: ");
-  Serial.println(myIP);
+  Serial.println(WiFi.softAPIP());
 
   server.on("/control", HTTP_POST, [](){
     String command = server.arg("command");       // Get the value of the "command" parameter
