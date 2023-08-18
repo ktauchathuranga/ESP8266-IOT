@@ -17,6 +17,8 @@ void setup() {
   Serial.begin(115200);
   delay(10);
 
+  pinMode(ledPin, OUTPUT);
+  
   // Connect to WiFi network
   WiFi.softAPConfig(localIP, gateway, subnet);
   WiFi.softAP(ssid, password);
