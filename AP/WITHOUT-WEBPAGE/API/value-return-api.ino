@@ -9,15 +9,23 @@ const char* password = "password123";
 const int sensorPin1 = A0; // Analog pin for the first sensor
 const int sensorPin2 = A1; // Analog pin for the second sensor
 
+IPAddress localIP(192, 168, 1, 1);  // Set your desired IP address
+IPAddress gateway(192, 168, 1, 1); // Set your gateway IP address
+IPAddress subnet(255, 255, 255, 0); // Set your subnet mask
+
 void setup() {
   Serial.begin(115200);
-
+  delay(10);
+  
   analogReference(DEFAULT);
-
+  
+  // Connect to WiFi network
+  WiFi.softAPConfig(localIP, gateway, subnet);
   WiFi.softAP(ssid, password);
-  IPAddress myIP = WiFi.softAPIP();
+
+  Serial.println();
   Serial.print("AP IP address: ");
-  Serial.println(myIP);
+  Serial.println(WiFi.softAPIP());
 
   server.on("/get-sensor", HTTP_POST, [](){
     String response = "";
